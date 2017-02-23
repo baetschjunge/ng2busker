@@ -1,0 +1,48 @@
+
+<section class="user-content">
+    <h1>Name {{name}}</h1>
+    <p>Email: {{email}}</p>
+
+    <h3>Adress:</h3>
+    <ul>
+        <li>Street: {{address.street}}</li>
+        <li>City: {{address.city}}</li>
+        <li>Zip: {{address.zip}}</li>
+    </ul>
+
+    <button (click)="toggleHobbies()">{{showHobbies ? "hide Hobbies" : "show Hobbies"}}</button>
+    <div *ngIf="showHobbies">
+        <h3>hobbies:</h3>
+        <ul>
+            <li *ngFor="let hobby of hobbies; let i = index">
+                {{hobby}} <button (click)="deleteHobby(i)"> - </button>
+            </li>
+            <form (submit)="addHobby(hobby.value)">
+                <label>Add Hobby </label>
+                <input type="text" #hobby />
+            </form>
+        </ul>
+
+    </div>
+
+    <div >
+        <form class="form-wrapper">
+            <label>Name: </label>
+            <input type="text" name="name" [(ngModel)]="name" />
+            <label>Email: </label>
+            <input type="text" name="email" [(ngModel)]="email" />
+            <label>Street: </label>
+            <input type="text" name="address.street" [(ngModel)]="address.street" />
+            <label>City: </label>
+            <input type="text" name="address.city" [(ngModel)]="address.city" />
+            <label>ZIP: </label>
+            <input type="text" name="address.zip" [(ngModel)]="address.zip" />
+        </form>
+    </div>
+
+    <h3>Posts:</h3>
+    <div *ngFor="let post of posts">
+        <h4>{{post.title}}</h4>
+        <p>{{post.paragraph}}</p>
+    </div>
+</section>
